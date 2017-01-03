@@ -1,6 +1,7 @@
 package kr.co.applicat;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
 import com.fpang.lib.FpangSession;
@@ -22,7 +23,7 @@ public class Adsync extends CordovaPlugin {
             Log.d(TAG, "index=showAdsyncListTest");
 
             String title = data.getString(0);
-            FpangSession.showAdsyncListTest(this.cordova.getActivity().getApplicationContext(), title);
+            FpangSession.showAdsyncListTest(this.cordova.getActivity(), title);
 
             callbackContext.success("Done");
 
@@ -31,10 +32,10 @@ public class Adsync extends CordovaPlugin {
             Log.d(TAG, "index=showAdsyncList");
 
             String title = data.getString(0);
-            if (title != null)
-                FpangSession.showAdsyncList(this.cordova.getActivity().getApplicationContext());
+            if (title == null)
+                FpangSession.showAdsyncList(this.cordova.getActivity());
             else
-                FpangSession.showAdsyncList(this.cordova.getActivity().getApplicationContext(), title);
+                FpangSession.showAdsyncList(this.cordova.getActivity(), title);
 
             callbackContext.success("Done");
 
@@ -43,7 +44,7 @@ public class Adsync extends CordovaPlugin {
             Log.d(TAG, "index=showAdsyncListWeb");
 
             String title = data.getString(0);
-            FpangSession.showAdsyncListWeb(this.cordova.getActivity().getApplicationContext(), title);
+            FpangSession.showAdsyncListWeb(this.cordova.getActivity(), title);
 
             callbackContext.success("Done");
 
@@ -52,7 +53,7 @@ public class Adsync extends CordovaPlugin {
             Log.d(TAG, "index=showAdsyncListWeb");
 
             String title = data.getString(0);
-            FpangSession.showAdsyncListWebTest(this.cordova.getActivity().getApplicationContext(), title);
+            FpangSession.showAdsyncListWebTest(this.cordova.getActivity(), title);
 
             callbackContext.success("Done");
 
@@ -76,7 +77,7 @@ public class Adsync extends CordovaPlugin {
         } else if (action.equals("getUserPoint")) {
             Log.d(TAG, "index=getUserPoint");
 
-            FpangSession.getUserPoint(this.cordova.getActivity().getApplicationContext(), new SessionCallback() {
+            FpangSession.getUserPoint(this.cordova.getActivity(), new SessionCallback() {
                 @Override
                 public void onResult(Context ctx, Object result) {
                     callbackContext.success(result.toString());
@@ -87,7 +88,7 @@ public class Adsync extends CordovaPlugin {
         } else if (action.equals("getUserPointTest")) {
             Log.d(TAG, "index=getUserPointTest");
 
-            FpangSession.getUserPointTest(this.cordova.getActivity().getApplicationContext(), new SessionCallback() {
+            FpangSession.getUserPointTest(this.cordova.getActivity(), new SessionCallback() {
                 @Override
                 public void onResult(Context ctx, Object result) {
                     callbackContext.success(result.toString());
@@ -98,7 +99,7 @@ public class Adsync extends CordovaPlugin {
         } else if (action.equals("init")) {
             Log.d(TAG, "index=init");
 
-            FpangSession.init(this.cordova.getActivity().getApplicationContext());
+            FpangSession.init(this.cordova.getActivity());
 
             callbackContext.success("Done");
 
@@ -152,7 +153,7 @@ public class Adsync extends CordovaPlugin {
             Log.d(TAG, "index=withdrawUserPoint");
 
             String description = data.getString(0);
-            FpangSession.withdrawUserPoint(this.cordova.getActivity().getApplicationContext(), new SessionCallback() {
+            FpangSession.withdrawUserPoint(this.cordova.getActivity(), new SessionCallback() {
                 @Override
                 public void onResult(Context ctx, Object result) {
                     callbackContext.success(result.toString());
@@ -165,7 +166,7 @@ public class Adsync extends CordovaPlugin {
             Log.d(TAG, "index=withdrawUserPointTest");
 
             String description = data.getString(0);
-            FpangSession.withdrawUserPointTest(this.cordova.getActivity().getApplicationContext(), new SessionCallback() {
+            FpangSession.withdrawUserPointTest(this.cordova.getActivity(), new SessionCallback() {
                 @Override
                 public void onResult(Context ctx, Object result) {
                     callbackContext.success(result.toString());
