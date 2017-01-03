@@ -1,0 +1,11 @@
+android {
+    repositories {
+        maven {
+            url 'https://dl.bintray.com/tonylee/maven/'
+        }
+    }
+}
+
+dependencies {
+    compile 'com.fpang:adsync2:5.2.3'
+}

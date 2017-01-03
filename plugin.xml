@@ -1,45 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
-        id="com.example.hello"
-        version="0.7.0">
+<plugin id="kr.co.applicat.adsync" version="0.7.0" xmlns="http://www.phonegap.com/ns/plugins/1.0">
 
-  <name>Hello</name>
+    <name>Adsync</name>
 
-  <engines>
-    <engine name="cordova" version=">=3.4.0"/>
-  </engines>
+    <engines>
+        <engine name="cordova" version=">=3.4.0" />
+    </engines>
 
-  <asset src="www/hello.js" target="js/hello.js"/>
+    <asset src="www/adsync.js" target="js/adsync.js" />
 
-  <js-module src="www/hello.js" name="hello">
-    <clobbers target="hello" />
-  </js-module>
+    <js-module name="adsync" src="www/adsync.js">
+        <clobbers target="Adsync" />
+    </js-module>
 
-  <platform name="android">
+    <preference name="PARTNER_ID" />
 
-    <config-file target="res/xml/config.xml" parent="/*">
-      <feature name="Hello">
-        <param name="android-package" value="com.example.plugin.Hello"/>
-      </feature>
-    </config-file>
+    <platform name="android">
 
-    <source-file src="src/android/Hello.java" target-dir="src/com/example/plugin/"/>
-  </platform>
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="Adsync">
+                <param name="android-package" value="kr.co.applicat.Adsync" />
+            </feature>
+        </config-file>
 
-  <platform name="ios">
-    
-    <config-file target="config.xml" parent="/widget">
-      <feature name="Hello">
-        <param name="ios-package" value="HWPHello" />
-      </feature>
-    </config-file>
+        <source-file src="src/android/Adsync.java" target-dir="src/kr/co/applicat/" />
 
-    <header-file src="src/ios/HWPHello.h" target-dir="HelloPlugin"/>
-    <source-file src="src/ios/HWPHello.m" target-dir="HelloPlugin"/>
-  </platform>
+        <framework custom="true" src="src/android/adsync.gradle" type="gradleReference" />
 
-  <platform name="wp7">
-    <source-file src="src/wp7/Hello.cs"/>
-  </platform>
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <meta-data android:name="partner_id" android:value="$PARTNER_ID" />
+            <activity android:name="com.fpang.lib.AdSyncList" android:screenOrientation="portrait"></activity>
+            <activity android:name="com.fpang.lib.FreePangPang" android:screenOrientation="portrait"></activity>
+        </config-file>
+
+    </platform>
+
+    <platform name="ios">
+
+        <config-file parent="/widget" target="config.xml">
+            <feature name="Hello">
+                <param name="ios-package" value="HWPHello" />
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/HWPHello.h" target-dir="HelloPlugin" />
+        <source-file src="src/ios/HWPHello.m" target-dir="HelloPlugin" />
+    </platform>
+
+    <platform name="wp7">
+        <source-file src="src/wp7/Hello.cs" />
+    </platform>
 
 </plugin>
