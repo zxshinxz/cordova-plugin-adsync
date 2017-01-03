@@ -7,7 +7,6 @@ Install the plugin
 
     $ cordova plugin add https://github.com/zxshinxz/cordova* plugin* adsync.git * * variable PARTNER_ID=''
 
-
 * showAdsyncListTest(title, successCallback, errorCallback)
 * showAdsyncList(title, successCallback, errorCallback)
 * showAdsyncListWeb(title, successCallback, errorCallback)
