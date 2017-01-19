@@ -1,54 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugin id="kr.co.applicat.adsync" version="0.7.0" xmlns="http://www.phonegap.com/ns/plugins/1.0">
 
-    <name>Adsync</name>
+  <name>Adsync</name>
 
-    <engines>
-        <engine name="cordova" version=">=3.4.0" />
-    </engines>
+  <engines>
+    <engine name="cordova" version=">=3.4.0"/>
+  </engines>
 
-    <asset src="www/adsync.js" target="js/adsync.js" />
+  <asset src="www/adsync.js" target="js/adsync.js"/>
 
-    <js-module name="adsync" src="www/adsync.js">
-        <clobbers target="Adsync" />
-    </js-module>
+  <js-module name="adsync" src="www/adsync.js">
+    <clobbers target="Adsync"/>
+  </js-module>
 
-    <preference name="PARTNER_ID" />
+  <preference name="PARTNER_ID"/>
 
-    <platform name="android">
+  <platform name="android">
 
-        <config-file parent="/*" target="res/xml/config.xml">
-            <feature name="Adsync">
-                <param name="android-package" value="kr.co.applicat.Adsync" />
-            </feature>
-        </config-file>
+    <config-file parent="/*" target="res/xml/config.xml">
+      <feature name="Adsync">
+        <param name="android-package" value="kr.co.applicat.Adsync"/>
+      </feature>
+    </config-file>
 
-        <source-file src="src/android/Adsync.java" target-dir="src/kr/co/applicat/" />
+    <source-file src="src/android/Adsync.java" target-dir="src/kr/co/applicat/"/>
 
-        <framework custom="true" src="src/android/adsync.gradle" type="gradleReference" />
+    <framework custom="true" src="src/android/adsync.gradle" type="gradleReference"/>
 
-        <config-file target="AndroidManifest.xml" parent="/manifest/application">
-            <meta-data android:name="partner_id" android:value="$PARTNER_ID" />
-            <activity android:name="com.fpang.lib.AdSyncList" android:screenOrientation="portrait"></activity>
-            <activity android:name="com.fpang.lib.FreePangPang" android:screenOrientation="portrait"></activity>
-        </config-file>
+    <config-file target="AndroidManifest.xml" parent="/manifest/application">
+      <meta-data android:name="partner_id" android:value="$PARTNER_ID"/>
+      <activity android:name="com.fpang.lib.AdSyncList" android:screenOrientation="portrait"></activity>
+      <activity android:name="com.fpang.lib.FreePangPang" android:screenOrientation="portrait"></activity>
+    </config-file>
 
-    </platform>
+  </platform>
 
-    <platform name="ios">
+  <platform name="ios">
 
-        <config-file parent="/widget" target="config.xml">
-            <feature name="Hello">
-                <param name="ios-package" value="HWPHello" />
-            </feature>
-        </config-file>
+    <config-file parent="/widget" target="config.xml">
+      <feature name="Adsync">
+        <param name="ios-package" value="Adsync2P"/>
+      </feature>
+    </config-file>
 
-        <header-file src="src/ios/HWPHello.h" target-dir="HelloPlugin" />
-        <source-file src="src/ios/HWPHello.m" target-dir="HelloPlugin" />
-    </platform>
+    <header-file src="src/ios/Adsync2P.h" target-dir=""/>
+    <source-file src="src/ios/Adsync2P.m" target-dir=""/>
+    <source-file src="src/ios/AdsyncWall.h" target-dir=""/>
+    <source-file src="src/ios/AdsyncWall.m" target-dir=""/>
+    <source-file src="src/ios/libadsync2.a" framework="true"/>
+    <source-file src="src/ios/adsync2.h" framework="true"/>
+    <resource-file src="src/ios/close_btn.png"/>
+    <resource-file src="src/ios/new_icon.png"/>
 
-    <platform name="wp7">
-        <source-file src="src/wp7/Hello.cs" />
-    </platform>
+    <config-file target="*-Info.plist" parent="NSAppTransportSecurity">
+      <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+      </dict>
+    </config-file>
+
+    <config-file target="*-Info.plist" parent="PartnerId">
+      <string>$PARTNER_ID</string>
+    </config-file>
+
+  </platform>
+
+  <platform name="wp7">
+    <source-file src="src/wp7/Hello.cs"/>
+  </platform>
 
 </plugin>
