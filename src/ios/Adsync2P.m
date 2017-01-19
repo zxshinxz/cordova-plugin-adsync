@@ -40,6 +40,41 @@ extern NSString*  sCustId=@"";
     }
 }
 
+- (void)showAdsyncListTest:(CDVInvokedUrlCommand*)command
+{
+
+    NSString* title = [[command arguments] objectAtIndex:0];
+
+
+    if(sCustId.length == 0){
+
+        NSString* msg = [NSString stringWithFormat: @"Please set UserId"];
+
+        CDVPluginResult* result = [CDVPluginResult
+                                   resultWithStatus:CDVCommandStatus_ERROR
+                                   messageAsString:msg];
+
+        [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
+
+    }else{
+
+        AdsyncWall *wall  = [[AdsyncWall alloc]init];
+        //    wall.view.backgroundColor = [UIColor blackColor];
+        //    [self.viewController presentViewController:wall animated:YES completion:nil];
+
+        [self.viewController addChildViewController:wall];
+        [wall showAdsyncWallTest:sCustId :title];
+
+        NSString* msg = [NSString stringWithFormat: @"Done"];
+
+        CDVPluginResult* result = [CDVPluginResult
+                                   resultWithStatus:CDVCommandStatus_OK
+                                   messageAsString:msg];
+
+        [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
+    }
+}
+
 - (void)setUserId:(CDVInvokedUrlCommand*)command{
 
 
